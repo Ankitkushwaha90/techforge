@@ -1,0 +1,279 @@
+{% extends 'base.html' %}
+
+{% block title %}About - TechForge Tutorials{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <!-- Hero Section -->
+    <div class="relative bg-indigo-700 overflow-hidden">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl">
+                    <span class="block">About TechForge Tutorials</span>
+                </h1>
+                <p class="mt-3 max-w-md mx-auto text-base text-indigo-100 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                    Empowering the next generation of tech innovators through interconnected learning
+                </p>
+            </div>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-indigo-700 to-indigo-800 opacity-90"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Mission Section -->
+        <div class="bg-white dark:bg-gray-800 shadow-xl rounded-lg overflow-hidden mb-12 transition-colors duration-200">
+            <div class="px-6 py-8 sm:p-10">
+                <div class="text-center">
+                    <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+                        Our Mission
+                    </h2>
+                    <div class="mt-6 max-w-3xl mx-auto">
+                        <p class="text-xl text-gray-600 dark:text-gray-300">
+                            TechForge Tutorials is dedicated to providing comprehensive, interconnected tech education that bridges the gap between theoretical knowledge and practical application. We believe in progressive learning that builds upon foundational concepts to create well-rounded technology professionals.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2 mb-12">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg transition-colors duration-200">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
+                            <svg class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                            </svg>
+                        </div>
+                        <div class="ml-5">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-white">🎯 Progressive Learning</h3>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-base text-gray-600 dark:text-gray-300">
+                        Our curriculum is designed with prerequisites and dependencies, ensuring you build knowledge systematically from basics to advanced concepts.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg transition-colors duration-200">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
+                            <svg class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                            </svg>
+                        </div>
+                        <div class="ml-5">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-white">🔗 Interconnected Topics</h3>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-base text-gray-600 dark:text-gray-300">
+                        Learn how different technologies work together - from databases powering web apps to ML models deployed on cloud infrastructure.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Modules -->
+        <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg mb-12 transition-colors duration-200">
+            <div class="px-4 py-5 sm:px-6 border-t border-gray-200 dark:border-gray-700 pt-6">
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Our 7 Core Modules</h3>
+            </div>
+            <div class="px-4 py-5 sm:p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-lg font-medium text-gray-900 dark:text-white mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">Foundational</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">📊</span>
+                                <div>
+                                    <span class="font-medium text-gray-900 dark:text-gray-100">Databases</span>
+                                    <p class="text-base text-gray-500 dark:text-gray-400">SQL, NoSQL, data modeling</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">🌐</span>
+                                <div>
+                                    <span class="font-medium text-gray-900 dark:text-gray-100">Full Stack Web Development</span>
+                                    <p class="text-base text-gray-500 dark:text-gray-400">Frontend & backend integration</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-medium text-gray-900 dark:text-white mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">Advanced</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">☁️</span>
+                                <div>
+                                    <span class="font-medium text-gray-900 dark:text-gray-100">Cloud Computing</span>
+                                    <p class="text-base text-gray-500 dark:text-gray-400">AWS, Azure, deployment</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">📈</span>
+                                <div>
+                                    <span class="font-medium text-gray-900 dark:text-gray-100">Data Science</span>
+                                    <p class="text-base text-gray-500 dark:text-gray-400">Python, analytics, visualization</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">🤖</span>
+                                <div>
+                                    <span class="font-medium text-gray-900 dark:text-gray-100">Machine Learning/AI</span>
+                                    <p class="text-base text-gray-500 dark:text-gray-400">Algorithms, neural networks</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">📡</span>
+                                <div>
+                                    <span class="font-medium text-gray-900 dark:text-gray-100">IoT Devices</span>
+                                    <p class="text-base text-gray-500 dark:text-gray-400">Hardware, protocols, edge computing</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">🔒</span>
+                                <div>
+                                    <span class="font-medium text-gray-900 dark:text-gray-100">Cybersecurity</span>
+                                    <p class="text-base text-gray-500 dark:text-gray-400">Threats, defenses, secure development</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="grid grid-cols-1 gap-8 mb-12 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="pt-6">
+                <div class="flow-root bg-white dark:bg-gray-800 rounded-lg px-6 pb-8 h-full transition-colors duration-200">
+                    <div class="-mt-6">
+                        <div class="border-t border-gray-200 dark:border-gray-700 pt-6 flex items-center justify-between">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mx-auto">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                </svg>
+                            </div>
+                            <h3 class="mt-4 text-lg font-medium text-gray-900 text-center">Comprehensive Content</h3>
+                            <p class="mt-2 text-base text-gray-500 text-center">
+                                Video tutorials, interactive code examples, and detailed explanations
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-6">
+                <div class="flow-root bg-white dark:bg-gray-800 rounded-lg px-6 pb-8 h-full transition-colors duration-200">
+                    <div class="-mt-6">
+                        <div class="border-t border-gray-200 dark:border-gray-700 pt-6 flex items-center justify-between">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white mx-auto">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                                </svg>
+                            </div>
+                            <h3 class="mt-4 text-lg font-medium text-gray-900 text-center">Hands-On Projects</h3>
+                            <p class="mt-2 text-base text-gray-500 text-center">
+                                Real-world assignments that build your portfolio and practical skills
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-6">
+                <div class="flow-root bg-white dark:bg-gray-800 rounded-lg px-6 pb-8 h-full transition-colors duration-200">
+                    <div class="-mt-6">
+                        <div class="border-t border-gray-200 dark:border-gray-700 pt-6 flex items-center justify-between">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mx-auto">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                </svg>
+                            </div>
+                            <h3 class="mt-4 text-lg font-medium text-gray-900 text-center">Progress Tracking</h3>
+                            <p class="mt-2 text-base text-gray-500 text-center">
+                                Monitor your learning journey with detailed progress analytics
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Methodology -->
+        <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg mb-12 transition-colors duration-200">
+            <div class="px-4 py-5 sm:px-6 border-t border-gray-200 dark:border-gray-700 pt-6">
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Learning Methodology</h3>
+            </div>
+            <div class="px-4 py-5 sm:p-6">
+                <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
+                    <div class="pt-6">
+                        <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full">
+                            <div class="-mt-6">
+                                <div class="border-t border-gray-200 dark:border-gray-700 pt-6 flex items-center justify-between">
+                                    <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-500 text-white text-xl font-bold mx-auto">1</div>
+                                    <h3 class="mt-4 text-lg font-medium text-gray-900 text-center">Learn Fundamentals</h3>
+                                    <p class="mt-2 text-base text-gray-500 text-center">
+                                        Master core concepts with clear explanations
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6">
+                        <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full">
+                            <div class="-mt-6">
+                                <div class="border-t border-gray-200 dark:border-gray-700 pt-6 flex items-center justify-between">
+                                    <div class="flex items-center justify-center h-12 w-12 rounded-full bg-green-500 text-white text-xl font-bold mx-auto">2</div>
+                                    <h3 class="mt-4 text-lg font-medium text-gray-900 text-center">Apply Knowledge</h3>
+                                    <p class="mt-2 text-base text-gray-500 text-center">
+                                        Work on practical projects and assignments
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6">
+                        <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full">
+                            <div class="-mt-6">
+                                <div class="border-t border-gray-200 dark:border-gray-700 pt-6 flex items-center justify-between">
+                                    <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-500 text-white text-xl font-bold mx-auto">3</div>
+                                    <h3 class="mt-4 text-lg font-medium text-gray-900 text-center">Connect Concepts</h3>
+                                    <p class="mt-2 text-base text-gray-500 text-center">
+                                        Understand how technologies integrate together
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="bg-indigo-700 rounded-lg shadow-xl overflow-hidden">
+            <div class="px-6 py-12 sm:p-12 text-center">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                    Ready to Start Your Tech Journey?
+                </h2>
+                <p class="mt-3 text-xl text-indigo-100">
+                    Join thousands of learners building their future in technology
+                </p>
+                <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="{% url 'register' %}" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-white hover:bg-indigo-50 md:py-4 md:text-lg md:px-10 transition duration-150 ease-in-out">
+                        Get Started
+                    </a>
+                    <a href="{% url 'courses:courses_list' %}" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 md:py-4 md:text-lg md:px-10 transition duration-150 ease-in-out">
+                        Browse Courses
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

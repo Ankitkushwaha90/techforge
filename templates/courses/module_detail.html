@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ module.title }} - {{ course.title }} - TechForge Tutorials{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+        <!-- Breadcrumb -->
+        <nav class="flex mb-6" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li>
+                    <div class="flex items-center">
+                        <a href="{% url 'courses:courses_list' %}" class="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">Courses</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <a href="{% url 'courses:course_detail' course.slug %}" class="ml-1 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 md:ml-2">{{ course.title|truncatechars:30 }}</a>
+                    </div>
+                </li>
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        
+                        <span class="ml-1 text-sm font-medium text-gray-500 dark:text-gray-400 md:ml-2">{{ module.title|truncatechars:30 }}</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+            <!-- Sidebar with modules -->
+            <div class="lg:col-span-3 mb-8 lg:mb-0">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
+                    <div class="p-4 bg-gray-100 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
+                        <h2 class="text-lg font-medium text-gray-900 dark:text-white">Course Modules</h2>
+                    </div>
+                    <nav class="divide-y divide-gray-200 dark:divide-gray-700" aria-label="Course modules">
+                        {% for mod in course.modules.all %}
+                        <div class="px-4 py-3 {% if mod.id == module.id %}bg-indigo-50 dark:bg-indigo-900/30{% else %}hover:bg-gray-50 dark:hover:bg-gray-700{% endif %}">
+                            <a href="{% url 'courses:module_detail' course.slug mod.id %}" 
+                               class="flex items-center justify-between text-sm font-medium {% if mod.id == module.id %}text-indigo-700 dark:text-indigo-300{% else %}text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400{% endif %}">
+                                <span>{{ mod.title }}</span>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">{{ mod.contents.count }} items</span>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="lg:col-span-9">
+                <!-- Module Header -->
+                <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg mb-8">
+                    <div class="px-4 py-5 sm:px-6">
+                        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ module.title }}</h1>
+                        {% if module.description %}
+                        <p class="mt-2 text-gray-600 dark:text-gray-300">{{ module.description }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Content Items -->
+                {% if contents %}
+                    {% for content in contents %}
+                    <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg mb-6">
+                        <div class="px-4 py-5 sm:px-6">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-white">{{ content.title }}</h3>
+                            {% if content.description %}
+                            <p class="mt-1 text-gray-600 dark:text-gray-300">{{ content.description }}</p>
+                            {% endif %}
+                        </div>
+                        {% if content.code %}
+                        <div class="bg-gray-900 px-4 py-3 sm:px-6 overflow-x-auto">
+                            <pre class="language-{{ content.code_language }}">
+                                <code class="language-{{ content.code_language }} text-sm">{{ content.code|escape }}</code>
+                            </pre>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="text-center py-12 bg-white dark:bg-gray-800 rounded-lg shadow">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">No content yet</h3>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">This module doesn't have any content yet.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

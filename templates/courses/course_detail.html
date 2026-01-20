@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ course.title }} - TechForge Tutorials{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <!-- Course Header -->
+    <div class="bg-indigo-700 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="flex-1 min-w-0">
+                    <h1 class="text-3xl font-bold leading-tight">{{ course.title }}</h1>
+                    <p class="mt-2 text-indigo-100">{{ course.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="lg:grid lg:grid-cols-4 lg:gap-8">
+            <!-- Sidebar with modules -->
+            <div class="lg:col-span-1 mb-8 lg:mb-0">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
+                    <div class="p-4 bg-gray-100 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
+                        <h2 class="text-lg font-medium text-gray-900 dark:text-white">Course Modules</h2>
+                    </div>
+                    <nav class="divide-y divide-gray-200 dark:divide-gray-700" aria-label="Course modules">
+                        {% for module in modules %}
+                        <div class="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700">
+                            <a href="{% url 'courses:module_detail' course.slug module.id %}" 
+                               class="flex items-center justify-between text-sm font-medium text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300">
+                                <span>{{ module.title }}</span>
+                                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">{{ module.contents.count }} lessons</p>
+                        </div>
+                        {% endfor %}
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main content area -->
+            <div class="lg:col-span-3">
+                <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg">
+                    <div class="px-4 py-5 sm:px-6 bg-gray-50 dark:bg-gray-700">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">
+                            Welcome to {{ course.title }}
+                        </h3>
+                        <p class="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-300">
+                            Select a module from the sidebar to get started.
+                        </p>
+                    </div>
+                    <div class="border-t border-gray-200 dark:border-gray-700 px-4 py-5 sm:px-6">
+                        <div class="prose max-w-none">
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 pb-2 border-b border-gray-200 dark:border-gray-600">About This Course</h3>
+                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-base">{{ course.description|linebreaksbr }}</p>
+                            
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mt-8 mb-4 pb-2 border-b border-gray-200 dark:border-gray-600">What You'll Learn</h3>
+                            <ul class="space-y-2 mb-6">
+                                {% for module in modules %}
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">{{ module.title }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            
+                            <div class="mt-8">
+                                <a href="{% url 'courses:module_detail' course.slug modules.0.id %}" 
+                                   class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Start Learning
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Custom styles for dark mode */
+    .prose a {
+        @apply text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300;
+    }
+    
+    .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+        @apply dark:text-white;
+    }
+    
+    .prose p, .prose li {
+        @apply dark:text-gray-300;
+    }
+    
+    .prose code {
+        @apply dark:bg-gray-700 dark:text-gray-100;
+    }
+</style>
+{% endblock %}

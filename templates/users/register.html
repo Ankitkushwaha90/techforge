@@ -1,0 +1,388 @@
+{% extends 'base.html' %}
+
+{% block title %}Register - TechForge Tutorials{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-4xl">
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+            Create your account
+        </h2>
+        <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-300">
+            Or
+            <a href="{% url 'login' %}" class="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
+                sign in to your existing account
+            </a>
+        </p>
+    </div>
+
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-4xl">
+        <div class="bg-white dark:bg-gray-800 py-8 px-6 shadow sm:rounded-lg sm:px-10">
+            <form class="space-y-6" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                {% if form.non_field_errors %}
+                    <div class="rounded-md bg-red-50 dark:bg-red-900/30 p-4 border-l-4 border-red-500 dark:border-red-600">
+                        <div class="text-sm text-red-700 dark:text-red-200">
+                            {{ form.non_field_errors }}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <!-- Username -->
+                    <div>
+                        <label for="{{ form.username.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Username <span class="text-red-500">*</span>
+                        </label>
+                        <div class="mt-1">
+                            <input type="text" name="username" id="id_username" required
+                                value="{{ form.username.value|default:'' }}"
+                                class="appearance-none block w-full px-3 py-2 border {% if form.username.errors %}border-red-500{% else %}border-gray-300 dark:border-gray-600{% endif %} rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                autocomplete="username">
+                            {% if form.username.errors %}
+                                <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ form.username.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">
+                            Email Address <span class="text-red-500">*</span>
+                        </label>
+                        <div class="mt-1">
+                            <input type="email" name="email" id="email" required
+                                value="{{ form.email.value|default:'' }}"
+                                class="appearance-none block w-full px-3 py-2 border {% if form.email.errors %}border-red-500{% else %}border-gray-300{% endif %} rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            {% if form.email.errors %}
+                                <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ form.email.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp Number -->
+                    <div>
+                        <label for="whatsapp" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            WhatsApp Number <span class="text-red-500">*</span>
+                        </label>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <span class="text-gray-500 sm:text-sm">+91</span>
+                            </div>
+                            <input type="tel" name="whatsapp" id="whatsapp" required
+                                value="{{ form.whatsapp.value|default:'' }}"
+                                class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-16 pr-3 sm:text-sm {% if form.whatsapp.errors %}border-red-500{% else %}border-gray-300 dark:border-gray-600{% endif %} rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                placeholder="" pattern="\d{10}" inputmode="numeric"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
+                                style="padding-left: 2.5rem;">
+                            {% if form.whatsapp.errors %}
+                                <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ form.whatsapp.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Please enter your 10-digit WhatsApp number</p>
+                    </div>
+
+                    <!-- Branch/Domain -->
+                    <div>
+                        <label for="branch" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Branch/Domain <span class="text-red-500">*</span>
+                        </label>
+                        <div class="mt-1">
+                            <select id="branch" name="branch" required
+                                class="appearance-none block w-full px-3 py-2 border {% if form.branch.errors %}border-red-500{% else %}border-gray-300 dark:border-gray-600{% endif %} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                                <option value="" disabled {% if not form.branch.value %}selected{% endif %}>Select your branch/domain</option>
+                                <option value="cse" {% if form.branch.value == 'cse' %}selected{% endif %}>Computer Science</option>
+                                <option value="it" {% if form.branch.value == 'it' %}selected{% endif %}>Information Technology</option>
+                                <option value="ece" {% if form.branch.value == 'ece' %}selected{% endif %}>Electronics & Communication</option>
+                                <option value="eee" {% if form.branch.value == 'eee' %}selected{% endif %}>Electrical & Electronics</option>
+                                <option value="mech" {% if form.branch.value == 'mech' %}selected{% endif %}>Mechanical</option>
+                                <option value="civil" {% if form.branch.value == 'civil' %}selected{% endif %}>Civil</option>
+                                <option value="ai_ml" {% if form.branch.value == 'ai_ml' %}selected{% endif %}>AI & Machine Learning</option>
+                                <option value="cyber_security" {% if form.branch.value == 'cyber_security' %}selected{% endif %}>Cyber Security</option>
+                                <option value="data_science" {% if form.branch.value == 'data_science' %}selected{% endif %}>Data Science</option>
+                                <option value="other" {% if form.branch.value == 'other' %}selected{% endif %}>Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- GitHub ID -->
+                    <div>
+                        <label for="github" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            GitHub Username
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(optional)</span>
+                        </label>
+                        <div class="mt-1">
+                            <div class="flex rounded-md shadow-sm">
+                                <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-500 dark:text-gray-300 sm:text-sm">
+                                    github.com/
+                                </span>
+                                <input type="text" name="github" id="github"
+                                    class="flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-r-md border-gray-300 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                    placeholder="yourusername">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resume Upload -->
+                    <div>
+                        <label for="resume" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Upload Resume
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(PDF, max 5MB)</span>
+                        </label>
+                        <div class="mt-1">
+                            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-md">
+                                <div class="space-y-1 text-center">
+                                    <svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <div class="flex text-sm text-gray-600">
+                                        <label for="resume" class="relative cursor-pointer bg-white dark:bg-gray-800 rounded-md font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300 focus-within:outline-none">
+                                            <span>Upload a file</span>
+                                            <input id="resume" name="resume" type="file" class="sr-only" accept=".pdf,.doc,.docx" {% if form.resume.value %}data-file-selected="true"{% endif %}>
+                                        </label>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">
+                                    Already have an account? 
+                                    <a href="{% url 'login' %}" class="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
+                                        Sign in
+                                    </a>
+                                </p>    {% if form.resume.errors %}
+                                        <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ form.resume.errors.0 }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="col-span-2">
+                        <label for="id_password1" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Password <span class="text-red-500">*</span>
+                        </label>
+                        <div class="mt-1">
+                            <input type="password" name="password1" id="id_password1" required
+                                class="appearance-none block w-full px-3 py-2 border {% if form.password1.errors %}border-red-500{% else %}border-gray-300 dark:border-gray-600{% endif %} rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                autocomplete="new-password">
+                            {% if form.password1.errors %}
+                                <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ form.password1.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                            Your password must be at least 8 characters long and not too common.
+                        </p>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="col-span-2">
+                        <label for="id_password2" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Confirm Password <span class="text-red-500">*</span>
+                        </label>
+                        <div class="mt-1">
+                            <input type="password" name="password2" id="id_password2" required
+                                class="appearance-none block w-full px-3 py-2 border {% if form.password2.errors %}border-red-500{% else %}border-gray-300{% endif %} rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                autocomplete="new-password">
+                            {% if form.password2.errors %}
+                                <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ form.password2.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div>
+                    <label for="additional_info" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Additional Information
+                        <span class="text-xs text-gray-500 dark:text-gray-400">(optional)</span>
+                    </label>
+                    <div class="mt-1">
+                        <textarea id="additional_info" name="additional_info" rows="3"
+                            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                            placeholder="Any other information you'd like to share..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="flex items-center">
+                    <input id="terms" name="terms" type="checkbox" required
+                        class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                    <label for="terms" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+                        I agree to the <a href="#" class="text-indigo-600 hover:text-indigo-500">Terms of Service</a> and
+                        <a href="#" class="text-indigo-600 hover:text-indigo-500">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" 
+                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors duration-200">
+                        Create Account
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Style form inputs to match Tailwind design */
+    input[type="text"],
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"],
+    input[type="file"],
+    select,
+    textarea {
+        appearance: none;
+        background-color: #fff;
+        border: 1px solid #d1d5db;
+        border-radius: 0.375rem;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        color: #111827;
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        margin-top: 0.25rem;
+        padding: 0.5rem 0.75rem;
+        width: 100%;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    select:focus,
+    textarea:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 1px #6366f1;
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+    }
+
+    /* File upload styling */
+    .file-upload {
+        border: 2px dashed #d1d5db;
+        border-radius: 0.5rem;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .file-upload:hover {
+        border-color: #9ca3af;
+        background-color: #f9fafb;
+    }
+
+    /* Error state styling */
+    .errorlist {
+        color: #dc2626;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    input.error,
+    select.error,
+    textarea.error {
+        border-color: #dc2626;
+    }
+
+    /* Custom checkbox */
+    input[type="checkbox"] {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 0.25rem;
+        border: 1px solid #d1d5db;
+    }
+
+    input[type="checkbox"]:checked {
+        background-color: #4f46e5;
+        border-color: #4f46e5;
+    }
+</style>
+
+<script>
+    // Client-side form validation
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        const fileInput = document.getElementById('resume');
+        const maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
+        
+        // Handle file selection
+        if (fileInput) {
+            fileInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Check file size
+                    if (file.size > maxFileSize) {
+                        alert('File size exceeds 5MB limit. Please choose a smaller file.');
+                        this.value = ''; // Clear the file input
+                    }
+                    
+                    // Check file type
+                    const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                    if (!validTypes.includes(file.type)) {
+                        alert('Please upload a valid file type (PDF, DOC, or DOCX)');
+                        this.value = ''; // Clear the file input
+                    }
+                }
+                
+                // Update UI to show selected file name
+                const fileName = file ? file.name : 'No file chosen';
+                const fileInfo = document.createElement('div');
+                fileInfo.className = 'mt-1 text-sm text-gray-700';
+                fileInfo.textContent = `Selected: ${fileName}`;
+                
+                const existingFileInfo = this.parentNode.querySelector('.file-info');
+                if (existingFileInfo) {
+                    existingFileInfo.remove();
+                }
+                
+                if (file) {
+                    this.parentNode.appendChild(fileInfo);
+                }
+            });
+        }
+        
+        form.addEventListener('submit', function(event) {
+            let isValid = true;
+            
+            // Validate WhatsApp number
+            const whatsappInput = document.getElementById('whatsapp');
+            if (whatsappInput && !/^\d{10}$/.test(whatsappInput.value)) {
+                isValid = false;
+                whatsappInput.classList.add('border-red-500');
+                const errorElement = document.createElement('p');
+                errorElement.className = 'mt-1 text-sm text-red-600';
+                errorElement.textContent = 'Please enter a valid 10-digit phone number';
+                whatsappInput.parentNode.appendChild(errorElement);
+            }
+            
+            // Validate file size on form submission
+            if (fileInput && fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                if (file.size > maxFileSize) {
+                    isValid = false;
+                    const errorElement = document.createElement('p');
+                    errorElement.className = 'mt-1 text-sm text-red-600';
+                    errorElement.textContent = 'File size exceeds 5MB limit';
+                    fileInput.parentNode.appendChild(errorElement);
+                }
+            }
+            
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+        
+        // Clear error on input
+        const inputs = form.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                this.classList.remove('border-red-500');
+                const errorElement = this.parentNode.querySelector('.text-red-600');
+                if (errorElement) {
+                    errorElement.remove();
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
